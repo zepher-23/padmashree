@@ -206,6 +206,27 @@ export default function Services() {
         setActiveProduct(activeCategory.items[0]);
     }, [activeCategory]);
 
+    // Preload all product images to ensure smooth transitions
+    useEffect(() => {
+        const preloadImages = () => {
+            CATEGORIES.forEach(category => {
+                category.items.forEach(item => {
+                    if (item.image) {
+                        const img = new Image();
+                        img.src = item.image;
+                    }
+                });
+            });
+        };
+
+        // requestIdleCallback is better for performance if available, otherwise immediate
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(preloadImages);
+        } else {
+            setTimeout(preloadImages, 1000); // Small delay to prioritize initial render
+        }
+    }, []);
+
     const handleProductClick = (item) => {
         setActiveProduct(item);
         if (window.innerWidth < 1024 && detailViewRef.current) {
