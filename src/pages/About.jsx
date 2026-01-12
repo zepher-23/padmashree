@@ -3,9 +3,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, Users, Award, History, Heart } from 'lucide-react';
 
-import aboutHero from '../assets/images/about-hero.png?format=webp&w=1920&quality=80';
-import serviceCommercial from '../assets/images/service-commercial.png?format=webp&w=600&quality=80';
-import servicePackaging from '../assets/images/service-packaging.png?format=webp&w=600&quality=80';
+import aboutHero from '../assets/images/about-hero.png?format=webp&w=1920&quality=75';
+import serviceCommercial from '../assets/images/service-commercial.png?format=webp&w=600&quality=75';
+import servicePackaging from '../assets/images/service-packaging.png?format=webp&w=600&quality=75';
 
 export default function About() {
     return (

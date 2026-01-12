@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 
-import contactHero from '../assets/images/contact-hero.png?format=webp&w=1920&quality=80';
+import contactHero from '../assets/images/contact-hero.png?format=webp&w=1920&quality=75';
 
 export default function Contact() {
     const location = useLocation();

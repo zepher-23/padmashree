@@ -18,10 +18,10 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ServicesPage from "./pages/Services";
 
-import heroBg from './assets/images/hero-bg.png?format=webp&w=1920&quality=80';
-import serviceCommercial from './assets/images/service-commercial.png?format=webp&w=800&quality=80';
-import servicePackaging from './assets/images/service-packaging.png?format=webp&w=800&quality=80';
-import serviceGifting from './assets/images/service-gifting.png?format=webp&w=800&quality=80';
+import heroBg from './assets/images/hero-bg.png?format=webp&w=1920&quality=75';
+import serviceCommercial from './assets/images/service-commercial.png?format=webp&w=600&quality=75';
+import servicePackaging from './assets/images/service-packaging.png?format=webp&w=600&quality=75';
+import serviceGifting from './assets/images/service-gifting.png?format=webp&w=600&quality=75';
 
 // Data
 const SERVICES = [

@@ -10,23 +10,23 @@ import {
     ChevronRight, ChevronLeft, ChevronDown, Check
 } from 'lucide-react';
 
-import commercialImg from '../assets/images/commercial_v2.png?format=webp&w=1200&quality=80';
-import packagingImg from '../assets/images/packaging_v2.png?format=webp&w=1200&quality=80';
-import giftingImg from '../assets/images/gifting_v2.png?format=webp&w=1200&quality=80';
+import commercialImg from '../assets/images/commercial_v2.png?format=webp&w=800&quality=75';
+import packagingImg from '../assets/images/packaging_v2.png?format=webp&w=800&quality=75';
+import giftingImg from '../assets/images/gifting_v2.png?format=webp&w=800&quality=75';
 
-import businessCardsImg from '../assets/images/products/business_cards.png?format=webp&w=1200&quality=80';
-import brochuresImg from '../assets/images/products/brochures.png?format=webp&w=1200&quality=80';
-import letterheadsImg from '../assets/images/products/letterhead.jpeg?format=webp&w=1200&quality=80';
-import postersImg from '../assets/images/products/poster.jpeg?format=webp&w=1200&quality=80';
-import stickersImg from '../assets/images/products/stickers.jpeg?format=webp&w=1200&quality=80';
-import rigidBoxesImg from '../assets/images/products/rigid-box.jpeg?format=webp&w=1200&quality=80';
-import cartonsImg from '../assets/images/products/product-cartons.jpeg?format=webp&w=1200&quality=80';
-import paperBagsImg from '../assets/images/products/paper-bags.jpeg?format=webp&w=1200&quality=80';
-import mailerBoxesImg from '../assets/images/products/mailer-box.jpeg?format=webp&w=1200&quality=80';
-import tissuesImg from '../assets/images/products/tissues.jpeg?format=webp&w=1200&quality=80';
-import drinkwareImg from '../assets/images/products/drinkware.jpeg?format=webp&w=1200&quality=80';
-import magazinesImg from '../assets/images/products/magazine-booklets.jpeg?format=webp&w=1200&quality=80';
-import notebooksImg from '../assets/images/products/premium-book.jpeg?format=webp&w=1200&quality=80';
+import businessCardsImg from '../assets/images/products/business_cards.png?format=webp&w=800&quality=75';
+import brochuresImg from '../assets/images/products/brochures.png?format=webp&w=800&quality=75';
+import letterheadsImg from '../assets/images/products/letterhead.jpeg?format=webp&w=800&quality=75';
+import postersImg from '../assets/images/products/poster.jpeg?format=webp&w=800&quality=75';
+import stickersImg from '../assets/images/products/stickers.jpeg?format=webp&w=800&quality=75';
+import rigidBoxesImg from '../assets/images/products/rigid-box.jpeg?format=webp&w=800&quality=75';
+import cartonsImg from '../assets/images/products/product-cartons.jpeg?format=webp&w=800&quality=75';
+import paperBagsImg from '../assets/images/products/paper-bags.jpeg?format=webp&w=800&quality=75';
+import mailerBoxesImg from '../assets/images/products/mailer-box.jpeg?format=webp&w=800&quality=75';
+import tissuesImg from '../assets/images/products/tissues.jpeg?format=webp&w=800&quality=75';
+import drinkwareImg from '../assets/images/products/drinkware.jpeg?format=webp&w=800&quality=75';
+import magazinesImg from '../assets/images/products/magazine-booklets.jpeg?format=webp&w=800&quality=75';
+import notebooksImg from '../assets/images/products/premium-book.jpeg?format=webp&w=800&quality=75';
 
 const CATEGORIES = [
     {
