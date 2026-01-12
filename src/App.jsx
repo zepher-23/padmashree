@@ -17,6 +17,11 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ServicesPage from "./pages/Services";
 
+import heroBg from './assets/images/hero-bg.png?format=webp&w=1920&quality=80';
+import serviceCommercial from './assets/images/service-commercial.png?format=webp&w=800&quality=80';
+import servicePackaging from './assets/images/service-packaging.png?format=webp&w=800&quality=80';
+import serviceGifting from './assets/images/service-gifting.png?format=webp&w=800&quality=80';
+
 // Data
 const SERVICES = [
   {
@@ -24,7 +29,7 @@ const SERVICES = [
     title: "Commercial Printing",
     description: "High-volume, premium quality offset and digital printing for all your business needs.",
     features: ["Brochures & Flyers", "Business Cards", "Magazines", "Annual Reports"],
-    image: "/service-commercial.png",
+    image: serviceCommercial,
     icon: Printer,
   },
   {
@@ -32,7 +37,7 @@ const SERVICES = [
     title: "Custom Packaging",
     description: "Luxury boxes and bespoke packaging solutions that elevate your brand unboxing experience.",
     features: ["Product Boxes", "Rigid Boxes", "Eco-friendly Packaging", "Custom Inserts"],
-    image: "/service-packaging.png",
+    image: servicePackaging,
     icon: Package,
   },
   {
@@ -40,7 +45,7 @@ const SERVICES = [
     title: "Corporate Gifting",
     description: "Curated, branded merchandise and gift sets to build lasting relationships with clients and employees.",
     features: ["Welcome Kits", "Premium Stationery", "Tech Accessories", "Festive Hampers"],
-    image: "/service-gifting.png",
+    image: serviceGifting,
     icon: Gift,
   },
 ];
@@ -67,7 +72,7 @@ function Hero() {
       {/* Background Image with Overlay */}
       < div className="absolute inset-0 z-0" >
         <img
-          src="/hero-bg.png"
+          src={heroBg}
           alt="Offset Printing Press"
           className="w-full h-full object-cover"
         />
@@ -157,9 +162,9 @@ function ServiceCard({ service, index }) {
             </li>
           ))}
         </ul>
-        <button className="w-full py-3 rounded-xl border border-slate-200 font-semibold text-slate-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center justify-center gap-2">
+        <Link to={`/services?category=${service.id}`} className="w-full py-3 rounded-xl border border-slate-200 font-semibold text-slate-700 hover:border-primary-600 hover:text-primary-600 hover:bg-primary-50 transition-all flex items-center justify-center gap-2">
           Learn More <ChevronRight className="w-4 h-4" />
-        </button>
+        </Link>
       </div>
     </motion.div>
   );
@@ -240,7 +245,7 @@ function WhyChooseUs() {
           </div>
           <div className="relative">
             <div className="aspect-square rounded-3xl overflow-hidden bg-slate-100 relative z-10">
-              <img src="/service-packaging.png" className="w-full h-full object-cover" alt="Quality Control" />
+              <img src={servicePackaging} className="w-full h-full object-cover" alt="Quality Control" />
             </div>
             {/* Decorative elements */}
             <div className="absolute -bottom-10 -right-10 w-2/3 h-2/3 bg-primary-100 rounded-3xl -z-0" />

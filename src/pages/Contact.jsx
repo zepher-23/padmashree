@@ -3,6 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 
+import contactHero from '../assets/images/contact-hero.png?format=webp&w=1920&quality=80';
+
 export default function Contact() {
     return (
         <div className="pt-20 min-h-screen bg-slate-50">
@@ -10,7 +12,7 @@ export default function Contact() {
             <section className="relative h-auto md:h-[400px] py-20 md:py-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/contact-hero.png"
+                        src={contactHero}
                         alt="Contact Us"
                         className="w-full h-full object-cover"
                     />

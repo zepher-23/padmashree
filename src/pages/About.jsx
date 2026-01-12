@@ -3,6 +3,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, Users, Award, History, Heart } from 'lucide-react';
 
+import aboutHero from '../assets/images/about-hero.png?format=webp&w=1920&quality=80';
+import serviceCommercial from '../assets/images/service-commercial.png?format=webp&w=600&quality=80';
+import servicePackaging from '../assets/images/service-packaging.png?format=webp&w=600&quality=80';
+
 export default function About() {
     return (
         <div className="pt-20 min-h-screen bg-slate-50">
@@ -10,7 +14,7 @@ export default function About() {
             <section className="relative h-auto md:h-[500px] py-20 md:py-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
-                        src="/about-hero.png"
+                        src={aboutHero}
                         alt="Inside Padmashree Workshop"
                         className="w-full h-full object-cover"
                     />
@@ -69,7 +73,7 @@ export default function About() {
                         >
                             <div className="space-y-4 mt-8">
                                 <div className="bg-slate-100 rounded-3xl h-64 w-full flex items-center justify-center overflow-hidden">
-                                    <img src="/service-commercial.png" alt="History" className="w-full h-full object-cover" />
+                                    <img src={serviceCommercial} alt="History" className="w-full h-full object-cover" />
                                 </div>
                                 <div className="bg-primary-50 rounded-3xl p-8 flex flex-col justify-center items-center text-center h-48">
                                     <History className="w-10 h-10 text-primary-600 mb-2" />
@@ -84,7 +88,7 @@ export default function About() {
                                     <span className="text-sm text-slate-400">Team Members</span>
                                 </div>
                                 <div className="bg-slate-100 rounded-3xl h-64 w-full flex items-center justify-center overflow-hidden">
-                                    <img src="/service-packaging.png" alt="Team Work" className="w-full h-full object-cover" />
+                                    <img src={servicePackaging} alt="Team Work" className="w-full h-full object-cover" />
                                 </div>
                             </div>
                         </motion.div>
