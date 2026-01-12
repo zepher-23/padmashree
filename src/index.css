@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary-50: #eef7ff;
+    --color-primary-100: #d9edff;
+    --color-primary-200: #bce0ff;
+    --color-primary-300: #8ecbff;
+    --color-primary-400: #59adff;
+    --color-primary-500: #2b8aff;
+    --color-primary-600: #0066ff;
+    --color-primary-700: #0052eb;
+    --color-primary-800: #0044bd;
+    --color-primary-900: #003b94;
+    --color-primary-950: #00245b;
+}
+
+body {
+    @apply antialiased bg-slate-50 text-slate-900;
+}
