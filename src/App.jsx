@@ -1,7 +1,6 @@
-
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Printer,
   Package,
@@ -14,6 +13,7 @@ import {
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import Preloader from "./components/Preloader";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ServicesPage from "./pages/Services";
@@ -292,20 +292,75 @@ function Home() {
 
 
 
-function App() {
+// --- Main Application Component (Wrapper for Router context) ---
+function AppContent() {
+  const location = useLocation();
+  const [isLoading, setIsLoading] = React.useState(true);
+  const isFirstLoad = React.useRef(true);
+
+  // Initial Load - Image Preloading
+  React.useEffect(() => {
+    // Only run this logic once on mount
+    const imagesToPreload = [heroBg, serviceCommercial, servicePackaging, serviceGifting];
+
+    const preloadImage = (src) => {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = src;
+        img.onload = resolve;
+        img.onerror = resolve;
+      });
+    };
+
+    Promise.all(imagesToPreload.map(preloadImage))
+      .then(() => {
+        setTimeout(() => {
+          setIsLoading(false);
+          // After initial load is done, allow nav loader
+          setTimeout(() => { isFirstLoad.current = false; }, 100);
+        }, 1500); // Slightly longer initial load for branding
+      });
+  }, []);
+
+  // Navigation Load
+  React.useEffect(() => {
+    if (isFirstLoad.current) return;
+
+    setIsLoading(true);
+    // Short delay for page transitions
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   return (
-    <Router>
+    <React.Fragment>
+      <AnimatePresence mode="wait">
+        {isLoading && <Preloader key="preloader" />}
+      </AnimatePresence>
+
       <ScrollToTop />
+
       <div className="min-h-screen bg-white">
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
       </div>
+    </React.Fragment>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }
