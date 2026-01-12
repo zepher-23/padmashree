@@ -71,9 +71,9 @@ export default function NavBar() {
                             )
 
                         ))}
-                        <button className="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary-500/30">
+                        <Link to="/contact" className="bg-primary-600 hover:bg-primary-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-primary-500/30">
                             Get a Quote
-                        </button>
+                        </Link>
                     </div>
 
                     {/* Mobile Toggle */}
@@ -113,9 +113,9 @@ export default function NavBar() {
                             ))}
                         </div>
                         <div className="mt-auto">
-                            <button className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg">
+                            <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold text-lg text-center block">
                                 Get a Quote
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 )}

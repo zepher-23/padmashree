@@ -1,15 +1,20 @@
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 
 import contactHero from '../assets/images/contact-hero.png?format=webp&w=1920&quality=80';
 
 export default function Contact() {
+    const location = useLocation();
+
+    // Scroll logic removed as per user request
+
     return (
         <div className="pt-20 min-h-screen bg-slate-50">
             {/* Hero Section */}
-            <section className="relative h-auto md:h-[400px] py-20 md:py-0 flex items-center justify-center overflow-hidden">
+            <section className="relative h-auto md:h-[250px] py-16 md:py-0 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
                     <img
                         src={contactHero}
@@ -22,7 +27,7 @@ export default function Contact() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-5xl font-bold mb-4"
+                        className="text-4xl md:text-5xl font-bold mb-2"
                     >
                         Get in Touch
                     </motion.h1>
@@ -37,34 +42,35 @@ export default function Contact() {
                 </div>
             </section>
 
-            <section className="py-16 md:py-20 container mx-auto px-6">
-                <div className="grid md:grid-cols-2 gap-16">
+            <section className="py-8 container mx-auto px-6">
+                <div className="grid md:grid-cols-2 gap-8 md:gap-16">
                     {/* Contact Form */}
                     <motion.div
+                        id="contact-form"
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white p-8 md:p-12 rounded-3xl shadow-xl shadow-slate-200"
+                        className="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200"
                     >
-                        <h2 className="text-3xl font-bold text-slate-900 mb-8">Send us a Message</h2>
-                        <form className="space-y-6">
-                            <div className="grid md:grid-cols-2 gap-6">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Send us a Message</h2>
+                        <form className="space-y-4">
+                            <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-2">First Name</label>
-                                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John" />
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">First Name</label>
+                                    <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-2">Last Name</label>
-                                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Doe" />
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Last Name</label>
+                                    <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Doe" />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Email Address</label>
-                                <input type="email" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com" />
+                                <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
+                                <input type="email" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com" />
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Subject</label>
-                                <select className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
+                                <label className="block text-sm font-semibold text-slate-700 mb-1">Subject</label>
+                                <select className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
                                     <option>Commercial Printing Quote</option>
                                     <option>Packaging Inquiry</option>
                                     <option>Corporate Gifting</option>
@@ -72,10 +78,10 @@ export default function Contact() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-                                <textarea rows="4" className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Tell us about your project..."></textarea>
+                                <label className="block text-sm font-semibold text-slate-700 mb-1">Message</label>
+                                <textarea rows="3" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Tell us about your project..."></textarea>
                             </div>
-                            <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2">
+                            <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2">
                                 Send Message <Send className="w-5 h-5" />
                             </button>
                         </form>
@@ -86,56 +92,56 @@ export default function Contact() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="space-y-12"
+                        className="space-y-6"
                     >
                         <div>
-                            <h2 className="text-3xl font-bold text-slate-900 mb-6">Contact Information</h2>
-                            <p className="text-slate-500 text-lg mb-8 leading-relaxed">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Contact Information</h2>
+                            <p className="text-slate-500 text-base md:text-lg mb-6 leading-relaxed">
                                 Prefer to talk? Call us directly or visit our office for a cup of coffee and a consultation.
                             </p>
                         </div>
 
-                        <div className="space-y-8">
-                            <div className="flex items-start gap-6">
-                                <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                    <MapPin className="w-7 h-7" />
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-5">
+                                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
+                                    <MapPin className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-bold text-slate-900">Headquarters</h4>
-                                    <p className="text-slate-500 mt-2">123 Print Avenue, Industrial Area,<br />Tech City, Bangalore 560001</p>
+                                    <h4 className="text-lg font-bold text-slate-900">Headquarters</h4>
+                                    <p className="text-slate-500 mt-1 text-sm">123 Print Avenue, Industrial Area,<br />Tech City, Bangalore 560001</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-6">
-                                <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                    <Phone className="w-7 h-7" />
+                            <div className="flex items-start gap-5">
+                                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
+                                    <Phone className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-bold text-slate-900">Phone</h4>
-                                    <p className="text-slate-500 mt-2">+91 98765 43210 (Sales)</p>
-                                    <p className="text-slate-500">+91 80 1234 5678 (Support)</p>
+                                    <h4 className="text-lg font-bold text-slate-900">Phone</h4>
+                                    <p className="text-slate-500 mt-1 text-sm">+91 98765 43210 (Sales)</p>
+                                    <p className="text-slate-500 text-sm">+91 80 1234 5678 (Support)</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-6">
-                                <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                    <Mail className="w-7 h-7" />
+                            <div className="flex items-start gap-5">
+                                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
+                                    <Mail className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-bold text-slate-900">Email</h4>
-                                    <p className="text-slate-500 mt-2">sales@padmashree.com</p>
-                                    <p className="text-slate-500">support@padmashree.com</p>
+                                    <h4 className="text-lg font-bold text-slate-900">Email</h4>
+                                    <p className="text-slate-500 mt-1 text-sm">sales@padmashree.com</p>
+                                    <p className="text-slate-500 text-sm">support@padmashree.com</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-start gap-6">
-                                <div className="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
-                                    <Clock className="w-7 h-7" />
+                            <div className="flex items-start gap-5">
+                                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 shrink-0">
+                                    <Clock className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h4 className="text-xl font-bold text-slate-900">Working Hours</h4>
-                                    <p className="text-slate-500 mt-2">Mon - Sat: 9:00 AM - 7:00 PM</p>
-                                    <p className="text-slate-500">Sun: Closed</p>
+                                    <h4 className="text-lg font-bold text-slate-900">Working Hours</h4>
+                                    <p className="text-slate-500 mt-1 text-sm">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                                    <p className="text-slate-500 text-sm">Sun: Closed</p>
                                 </div>
                             </div>
                         </div>

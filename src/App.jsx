@@ -13,6 +13,7 @@ import {
 
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import ServicesPage from "./pages/Services";
@@ -101,7 +102,7 @@ function Hero() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link to="/contact" className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg shadow-primary-500/40 flex items-center justify-center gap-2 group">
-              Start a Project
+              Get a Quote
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-full font-bold text-lg transition-all">
@@ -294,6 +295,7 @@ function Home() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-white">
         <NavBar />
         <Routes>
