@@ -323,7 +323,7 @@ function AppContent() {
   }, []);
 
   // Navigation Load
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (isFirstLoad.current) return;
 
     setIsLoading(true);
@@ -343,7 +343,7 @@ function AppContent() {
 
       <ScrollToTop />
 
-      <div className="min-h-screen bg-white">
+      <div className={`min-h-screen bg-white ${isLoading ? 'invisible h-0 overflow-hidden' : 'visible'}`}>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
