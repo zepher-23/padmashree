@@ -15,6 +15,7 @@ import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import ServicesPage from "./pages/Services";
 
 // Data
 const SERVICES = [
@@ -282,6 +283,9 @@ function Home() {
   )
 }
 
+
+
+
 function App() {
   return (
     <Router>
@@ -290,6 +294,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />
