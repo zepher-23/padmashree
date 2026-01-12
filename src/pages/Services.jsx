@@ -28,6 +28,8 @@ import drinkwareImg from '../assets/images/products/drinkware.jpeg?format=webp&w
 import magazinesImg from '../assets/images/products/magazine-booklets.jpeg?format=webp&w=800&quality=75';
 import notebooksImg from '../assets/images/products/premium-book.jpeg?format=webp&w=800&quality=75';
 
+import servicesHero from '../assets/images/services-hero-header.png?format=webp&w=1920&quality=75';
+
 const CATEGORIES = [
     {
         id: "commercial",
@@ -41,7 +43,13 @@ const CATEGORIES = [
                 icon: CreditCard,
                 image: businessCardsImg,
                 description: "Make a memorable first impression with our premium business cards. Available in various finishes including matte, gloss, spot UV, and textured papers.",
-                features: ["350gsm - 400gsm Premium Stock", "Matte, Gloss, or Soft-touch Lamination", "Spot UV & Foil Stamping Options", "Rounded Corners Available"]
+                features: ["350gsm - 400gsm Premium Stock", "Matte, Gloss, or Soft-touch Lamination", "Spot UV & Foil Stamping Options", "Rounded Corners Available"],
+                details: [
+                    { label: "Min. Order", value: "100 Cards" },
+                    { label: "Turnaround", value: "2-3 Days" },
+                    { label: "Print Method", value: "Digital / Offset" }
+                ],
+                useCases: ["Networking Events", "Client Meetings", "Brand Identity", "Appointment Cards"]
             },
             {
                 id: 'brochures',
@@ -49,7 +57,13 @@ const CATEGORIES = [
                 icon: BookOpen,
                 image: brochuresImg,
                 description: "Communicate your message effectively with professionally printed brochures. Perfect for marketing campaigns, product catalogs, and event guides.",
-                features: ["Bi-fold, Tri-fold, Z-fold options", "High-quality Digital & Offset Print", "Gloss or Matte Finishes", "Bulk Volume Discounts"]
+                features: ["Bi-fold, Tri-fold, Z-fold options", "High-quality Digital & Offset Print", "Gloss or Matte Finishes", "Bulk Volume Discounts"],
+                details: [
+                    { label: "Min. Order", value: "50 Units" },
+                    { label: "Turnaround", value: "3-5 Days" },
+                    { label: "Paper", value: "130gsm - 170gsm" }
+                ],
+                useCases: ["Product Launches", "Service Menus", "Event Guides", "Direct Mail Marketing"]
             },
             {
                 id: 'letterheads',
@@ -57,7 +71,13 @@ const CATEGORIES = [
                 icon: FileText,
                 image: letterheadsImg,
                 description: "Reinforce your brand identity with every official document. Our crisp, clean letterhead printing ensures you look professional on paper.",
-                features: ["Premium Bond Paper", "Crisp Typography", "Pantone Color Matching", "Laser Printer Compatible"]
+                features: ["Premium Bond Paper", "Crisp Typography", "Pantone Color Matching", "Laser Printer Compatible"],
+                details: [
+                    { label: "Min. Order", value: "500 Sheets" },
+                    { label: "Turnaround", value: "3-5 Days" },
+                    { label: "Paper", value: "100gsm Bond" }
+                ],
+                useCases: ["Official Correspondence", "Invoices & Receipts", "Contracts", "Proposals", "Internal Memos"]
             },
             {
                 id: 'magazines',
@@ -65,7 +85,13 @@ const CATEGORIES = [
                 icon: BookOpen,
                 image: magazinesImg,
                 description: "From annual reports to lifestyle magazines, we produce high-quality multi-page publications with perfect binding or saddle stitching.",
-                features: ["Saddle Stitched or Perfect Bound", "High-Resolution Image Reproduction", "Cover Finishes available", "Custom Sizes"]
+                features: ["Saddle Stitched or Perfect Bound", "High-Resolution Image Reproduction", "Cover Finishes available", "Custom Sizes"],
+                details: [
+                    { label: "Min. Order", value: "10 Units" },
+                    { label: "Turnaround", value: "5-7 Days" },
+                    { label: "Binding", value: "Perfect / Saddle" }
+                ],
+                useCases: ["Annual Reports", "Product Catalogs", "Company Profiles", "Event Programs"]
             },
             {
                 id: 'posters',
@@ -73,7 +99,13 @@ const CATEGORIES = [
                 icon: Scroll,
                 image: postersImg,
                 description: "Grab attention with large format printing. Vibrant colors and durable materials make our posters and banners perfect for indoor and outdoor use.",
-                features: ["Wide Format Printing", "Vinyl, Canvas, or Paper", "Weather-resistant Options", "Grommets & Mounting Available"]
+                features: ["Wide Format Printing", "Vinyl, Canvas, or Paper", "Weather-resistant Options", "Grommets & Mounting Available"],
+                details: [
+                    { label: "Min. Order", value: "1 Unit" },
+                    { label: "Turnaround", value: "1-2 Days" },
+                    { label: "Format", value: "Large Format" }
+                ],
+                useCases: ["Event Promotions", "Storefront Displays", "Trade Show Booths", "Office Decor"]
             },
             {
                 id: 'stickers',
@@ -81,7 +113,13 @@ const CATEGORIES = [
                 icon: Sticker,
                 image: stickersImg,
                 description: "Versatile branding tools for products, packaging, and giveaways. Custom cut to any shape and available in rolls or sheets.",
-                features: ["Die-cut Custom Shapes", "Vinyl or Paper Stock", "Waterproof Options", "Easy Peel Backing"]
+                features: ["Die-cut Custom Shapes", "Vinyl or Paper Stock", "Waterproof Options", "Easy Peel Backing"],
+                details: [
+                    { label: "Min. Order", value: "100 Units" },
+                    { label: "Turnaround", value: "3-4 Days" },
+                    { label: "Type", value: "Roll / Sheet" }
+                ],
+                useCases: ["Product Labeling", "Brand Promotion", "Packaging Seals", "Event Badges"]
             }
         ]
     },
@@ -97,7 +135,13 @@ const CATEGORIES = [
                 icon: Box,
                 image: rigidBoxesImg,
                 description: "The ultimate premium unboxing experience. Sturdy, high-end rigid boxes perfect for luxury goods, electronics, and gift sets.",
-                features: ["Thick Greyboard Construction", "Premium Paper wrapping", "Magnetic Closures", "Custom Foam Inserts"]
+                features: ["Thick Greyboard Construction", "Premium Paper wrapping", "Magnetic Closures", "Custom Foam Inserts"],
+                details: [
+                    { label: "Min. Order", value: "500 Boxes" },
+                    { label: "Turnaround", value: "15-20 Days" },
+                    { label: "Grade", value: "Premium" }
+                ],
+                useCases: ["Luxury Goods", "Electronics", "VIP Gift Sets", "Jewelry Packaging"]
             },
             {
                 id: 'cartons',
@@ -105,7 +149,13 @@ const CATEGORIES = [
                 icon: Box,
                 image: cartonsImg,
                 description: "Standard folding cartons that are cost-effective yet high-quality. Ideal for retail products, cosmetics, and lightweight goods.",
-                features: ["SBS or Recycled Board", "Full Color CMYK Printing", "Embossing & Debossing", "Auto-lock Bottoms"]
+                features: ["SBS or Recycled Board", "Full Color CMYK Printing", "Embossing & Debossing", "Auto-lock Bottoms"],
+                details: [
+                    { label: "Min. Order", value: "1000 Boxes" },
+                    { label: "Turnaround", value: "7-10 Days" },
+                    { label: "Material", value: "SBS / mono" }
+                ],
+                useCases: ["Cosmetics Packaging", "Retail Shelves", "Pharma Boxes", "Food Packaging"]
             },
             {
                 id: 'paper-bags',
@@ -113,7 +163,13 @@ const CATEGORIES = [
                 icon: ShoppingBag,
                 image: paperBagsImg,
                 description: "Extend your brand visibility beyond the store. Durable, branded paper bags available in various sizes and handle types.",
-                features: ["Kraft or Coated Paper", "Twisted or Rope Handles", "Reinforced Bottoms", "Full Branding Surface"]
+                features: ["Kraft or Coated Paper", "Twisted or Rope Handles", "Reinforced Bottoms", "Full Branding Surface"],
+                details: [
+                    { label: "Min. Order", value: "500 Bags" },
+                    { label: "Turnaround", value: "7-10 Days" },
+                    { label: "Handle", value: "Twist / Rope" }
+                ],
+                useCases: ["Retail Shopping", "Event Goodie Bags", "Corporate Gifting", "Takeout Food"]
             },
             {
                 id: 'mailer-boxes',
@@ -121,7 +177,13 @@ const CATEGORIES = [
                 icon: Box,
                 image: mailerBoxesImg,
                 description: "Secure and stylish shipping boxes for e-commerce brands. Designed to protect your products while impressing your customers.",
-                features: ["E-flute Corrugated Board", "Inside & Outside Printing", "Self-locking Design", "Eco-friendly Materials"]
+                features: ["E-flute Corrugated Board", "Inside & Outside Printing", "Self-locking Design", "Eco-friendly Materials"],
+                details: [
+                    { label: "Min. Order", value: "200 Boxes" },
+                    { label: "Turnaround", value: "7-12 Days" },
+                    { label: "Usage", value: "Shipping" }
+                ],
+                useCases: ["E-commerce Shipments", "Subscription Boxes", "PR Kits", "Direct Mail"]
             },
             {
                 id: 'tissue',
@@ -129,7 +191,11 @@ const CATEGORIES = [
                 icon: Layers,
                 image: tissuesImg,
                 description: "Add a layer of luxury and protection inside your packaging. Custom printed tissue paper shows you care about the details.",
-                features: ["17gsm Acid-free Paper", "Repeated Logo Pattern", "Multiple Ink Colors", "Soft & Premium Feel"]
+                features: ["17gsm Acid-free Paper", "Repeated Logo Pattern", "Multiple Ink Colors", "Soft & Premium Feel"],
+                details: [
+                    { label: "Thickness", value: "17-20 gsm" }
+                ],
+                useCases: ["E-commerce Packaging", "Gift Wrapping", "Retail Bags", "Luxury Product Protection"]
             }
         ]
     },
@@ -145,7 +211,11 @@ const CATEGORIES = [
                 icon: Shirt,
                 image: "https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?auto=format&fit=crop&q=80&w=1000",
                 description: "Turn your team and fans into brand ambassadors with high-quality printed or embroidered t-shirts, hoodies, and caps.",
-                features: ["Screen Printing & Embroidery", "Premium Cotton Blends", "Unisex & Gender-specific cuts", "Various Colors Available"]
+                features: ["Screen Printing & Embroidery", "Premium Cotton Blends", "Unisex & Gender-specific cuts", "Various Colors Available"],
+                details: [
+                    { label: "Technique", value: "Print / Embroidery" }
+                ],
+                useCases: ["Team Uniforms", "Event Merchandise", "Promotional Giveaways", "Company Swag"]
             },
             {
                 id: 'drinkware',
@@ -153,7 +223,11 @@ const CATEGORIES = [
                 icon: Coffee,
                 image: drinkwareImg,
                 description: "Practical and popular. Custom mugs, tumblers, and water bottles that people will use every day.",
-                features: ["Ceramic, Steel, or Glass", "Laser Etching or Printing", "Double-wall Insulation", "Durable Coating"]
+                features: ["Ceramic, Steel, or Glass", "Laser Etching or Printing", "Double-wall Insulation", "Durable Coating"],
+                details: [
+                    { label: "Material", value: "Steel / Ceramic" }
+                ],
+                useCases: ["Employee Onboarding", "Client Gifting", "Trade Shows", "Office Use"]
             },
             {
                 id: 'notebooks',
@@ -161,7 +235,11 @@ const CATEGORIES = [
                 icon: BookOpen,
                 image: notebooksImg,
                 description: "Elegant notebooks for ideas and meeting notes. A staple corporate gift that exudes professionalism.",
-                features: ["Leather or Hardcover", "Embossed Logo", "Custom Inner Pages", "Elastic Band Closure"]
+                features: ["Leather or Hardcover", "Embossed Logo", "Custom Inner Pages", "Elastic Band Closure"],
+                details: [
+                    { label: "Cover", value: "Leather / Hard" }
+                ],
+                useCases: ["Conferences", "Executive Gifts", "Training Materials", "Client Meetings"]
             },
             {
                 id: 'writing',
@@ -169,7 +247,11 @@ const CATEGORIES = [
                 icon: PenTool,
                 image: "https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&q=80&w=1000",
                 description: "From budget-friendly giveaways to premium metal pens. Put your brand in their hand.",
-                features: ["Metal or Plastic Pens", "Laser Engraving", "Smooth Ink Flow", "Gift Box Options"]
+                features: ["Metal or Plastic Pens", "Laser Engraving", "Smooth Ink Flow", "Gift Box Options"],
+                details: [
+                    { label: "Type", value: "Ballpoint / Roller" }
+                ],
+                useCases: ["Trade Shows", "Reception Desks", "Sales Calls", "Gift Sets"]
             },
             {
                 id: 'tech',
@@ -177,7 +259,13 @@ const CATEGORIES = [
                 icon: Smartphone,
                 image: "https://images.unsplash.com/photo-1526406915894-7bcd65f60845?auto=format&fit=crop&q=80&w=1000",
                 description: "Modern gifts for the modern professional. Power banks, USB drives, and wireless chargers.",
-                features: ["High Utility Value", "Full Color Branding", "Compact & Portable", "Latest Tech Specs"]
+                features: ["High Utility Value", "Full Color Branding", "Compact & Portable", "Latest Tech Specs"],
+                details: [
+                    { label: "Min. Order", value: "25 Units" },
+                    { label: "Turnaround", value: "7-10 Days" },
+                    { label: "Category", value: "Electronics" }
+                ],
+                useCases: ["Corporate Gifts", "Tech Events", "Employee Welcome Kits"]
             }
         ]
     }
@@ -237,57 +325,104 @@ export default function Services() {
         }
     };
 
+    const [direction, setDirection] = useState(0);
+
     const handlePrevCategory = () => {
+        setDirection(-1);
         const currentIndex = CATEGORIES.findIndex(c => c.id === activeCategory.id);
         const prevIndex = (currentIndex - 1 + CATEGORIES.length) % CATEGORIES.length;
         setActiveCategory(CATEGORIES[prevIndex]);
     };
 
     const handleNextCategory = () => {
+        setDirection(1);
         const currentIndex = CATEGORIES.findIndex(c => c.id === activeCategory.id);
         const nextIndex = (currentIndex + 1) % CATEGORIES.length;
         setActiveCategory(CATEGORIES[nextIndex]);
     };
 
+    const slideVariants = {
+        enter: (direction) => ({
+            x: direction > 0 ? 50 : -50,
+            opacity: 0,
+            scale: 0.95
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+            scale: 1
+        },
+        exit: (direction) => ({
+            x: direction < 0 ? 50 : -50,
+            opacity: 0,
+            scale: 0.95
+        })
+    };
+
     return (
         <div className="pt-20 min-h-screen bg-slate-50">
-            {/* Simple Header */}
-            <div className="bg-slate-900 text-white py-8 md:py-12 text-center">
-                <div className="container mx-auto px-6">
-                    <h1 className="text-3xl md:text-4xl font-bold mb-2">Our Products & Services</h1>
-                    <p className="text-slate-400 text-base max-w-2xl mx-auto">Explore our wide range of print and packaging solutions.</p>
+            {/* Hero Header */}
+            <section className="relative h-[250px] flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0">
+                    <img
+                        src={servicesHero}
+                        alt="Our Services"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-slate-900/80" />
                 </div>
-            </div>
+                <div className="container mx-auto px-6 relative z-10 text-center text-white">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="text-3xl md:text-5xl font-bold mb-3"
+                    >
+                        Our Products & Services
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto"
+                    >
+                        Explore our wide range of print and packaging solutions.
+                    </motion.p>
+                </div>
+            </section>
 
             {/* Main Content */}
-            <div className="container mx-auto px-6 py-6 h-auto md:h-[calc(100vh-250px)] min-h-[600px]">
+            {/* Main Content */}
+            <div className="container mx-auto px-6 md:px-12 lg:px-24 py-2 h-auto min-h-[600px] mb-32 relative z-0">
 
                 {/* Mobile Category Carousel */}
-                <div className="md:hidden relative max-w-5xl mx-auto mb-16 px-4">
-                    <div className="flex flex-col items-center gap-6">
-                        <div className="flex items-center justify-center gap-4 w-full max-w-2xl">
+                <div className="md:hidden relative max-w-5xl mx-auto mb-6 px-2">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="flex items-center justify-center gap-3 w-full max-w-sm">
                             {/* Prev Button */}
                             <button
                                 onClick={handlePrevCategory}
-                                className="p-4 rounded-full bg-white text-slate-600 hover:bg-slate-50 hover:text-primary-600 border border-slate-200 shadow-sm transition-all hover:scale-110 active:scale-95 z-10 shrink-0"
+                                className="w-10 h-10 rounded-full bg-white text-slate-500 hover:text-primary-600 border border-slate-200 shadow-sm flex items-center justify-center active:scale-95 transition-all z-10 shrink-0"
                                 aria-label="Previous Category"
                             >
-                                <ChevronLeft className="w-6 h-6" />
+                                <ChevronLeft className="w-5 h-5" />
                             </button>
 
                             {/* Active Category Display */}
-                            <div className="flex-1 flex justify-center relative">
-                                <AnimatePresence mode="wait">
+                            <div className="flex-1 flex justify-center relative min-w-0 overflow-hidden">
+                                <AnimatePresence mode="wait" custom={direction}>
                                     <motion.div
                                         key={activeCategory.id}
-                                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, y: -20, scale: 0.9 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="px-8 py-4 rounded-full bg-primary-600 text-white shadow-xl shadow-primary-500/30 flex items-center justify-center gap-3 text-lg font-bold w-full mx-auto"
+                                        custom={direction}
+                                        variants={slideVariants}
+                                        initial="enter"
+                                        animate="center"
+                                        exit="exit"
+                                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                                        className="w-full h-10 px-4 rounded-full bg-primary-600 text-white shadow-md shadow-primary-500/25 flex items-center justify-center gap-2 text-sm font-bold truncate"
                                     >
-                                        <activeCategory.icon className="w-6 h-6" />
-                                        <span className="whitespace-nowrap">{activeCategory.title}</span>
+                                        <activeCategory.icon className="w-4 h-4 shrink-0" />
+                                        <span className="truncate">{activeCategory.title}</span>
                                     </motion.div>
                                 </AnimatePresence>
                             </div>
@@ -295,20 +430,20 @@ export default function Services() {
                             {/* Next Button */}
                             <button
                                 onClick={handleNextCategory}
-                                className="p-4 rounded-full bg-white text-slate-600 hover:bg-slate-50 hover:text-primary-600 border border-slate-200 shadow-sm transition-all hover:scale-110 active:scale-95 z-10 shrink-0"
+                                className="w-10 h-10 rounded-full bg-white text-slate-500 hover:text-primary-600 border border-slate-200 shadow-sm flex items-center justify-center active:scale-95 transition-all z-10 shrink-0"
                                 aria-label="Next Category"
                             >
-                                <ChevronRight className="w-6 h-6" />
+                                <ChevronRight className="w-5 h-5" />
                             </button>
                         </div>
 
                         {/* Indicators */}
-                        <div className="flex justify-center gap-2">
+                        <div className="flex justify-center gap-1.5">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat.id}
                                     onClick={() => setActiveCategory(cat)}
-                                    className={`h-2 rounded-full transition-all duration-300 ${activeCategory.id === cat.id ? "w-8 bg-primary-600" : "w-2 bg-slate-300 hover:bg-primary-300"
+                                    className={`h-1.5 rounded-full transition-all duration-300 ${activeCategory.id === cat.id ? "w-6 bg-primary-600" : "w-1.5 bg-slate-300"
                                         }`}
                                     aria-label={`Go to ${cat.title}`}
                                 />
@@ -318,27 +453,29 @@ export default function Services() {
                 </div>
 
                 {/* Desktop Category Tabs */}
-                <div className="hidden md:flex flex-wrap justify-center gap-3 mb-6">
-                    {CATEGORIES.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setActiveCategory(cat)}
-                            className={`px-5 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 border-2 ${activeCategory.id === cat.id
-                                ? "bg-primary-600 border-primary-600 text-white shadow-md shadow-primary-500/30 scale-105"
-                                : "bg-white border-slate-200 text-slate-600 hover:border-primary-200 hover:text-primary-600 hover:-translate-y-1"
-                                }`}
-                        >
-                            <cat.icon className="w-4 h-4" />
-                            {cat.title}
-                        </button>
-                    ))}
+                <div className="hidden md:flex justify-center mb-10">
+                    <div className="bg-white p-1.5 rounded-full shadow-lg shadow-slate-100 border border-slate-100 inline-flex flex-wrap gap-1">
+                        {CATEGORIES.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat)}
+                                className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all flex items-center gap-2.5 ${activeCategory.id === cat.id
+                                    ? "bg-primary-600 text-white shadow-md relative z-10"
+                                    : "text-slate-500 hover:text-primary-600 hover:bg-slate-50"
+                                    }`}
+                            >
+                                <cat.icon className={`w-4 h-4 ${activeCategory.id === cat.id ? "text-white" : "opacity-70"}`} />
+                                {cat.title}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Two Column Layout (Fixed Height Desktop) */}
-                <div className="grid lg:grid-cols-12 gap-6 h-full md:overflow-hidden">
+                {/* Two Column Layout (Dynamic Height) */}
+                <div className="grid lg:grid-cols-12 gap-6 h-auto">
 
                     {/* Sidebar - Product List (Desktop Only) */}
-                    <div className="hidden lg:flex lg:col-span-3 flex-col h-full space-y-3">
+                    <div className="hidden lg:flex lg:col-span-3 flex-col sticky top-24 self-start space-y-3 h-[calc(100vh-120px)]">
                         <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex-1 flex flex-col overflow-hidden">
                             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 px-2 shrink-0">
                                 {activeCategory.title}
@@ -376,7 +513,7 @@ export default function Services() {
                     <div className="lg:col-span-9" ref={detailViewRef}>
 
                         {/* Mobile Product Selector (Dropdown) */}
-                        <div className="lg:hidden mb-8 relative z-20">
+                        <div className="lg:hidden mb-3 relative z-20">
                             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 px-1">Select Product</h3>
                             <button
                                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -424,61 +561,91 @@ export default function Services() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.98 }}
                                 transition={{ duration: 0.2 }}
-                                className="bg-white rounded-[2rem] shadow-2xl shadow-slate-100 border border-slate-100 h-full flex flex-col relative overflow-hidden"
+                                className="bg-white rounded-[2rem] shadow-2xl shadow-slate-100 border border-slate-100 h-auto flex flex-col relative overflow-hidden"
                             >
                                 {/* Scrollable Area */}
-                                <div className="flex-1 overflow-y-auto custom-scrollbar">
-                                    {/* Compact Hero Image */}
-                                    <div className="relative h-48 w-full group">
+                                <div className="w-full">
+                                    {/* Product Hero Image */}
+                                    <div className="relative h-64 w-full group">
                                         <img
                                             src={activeProduct.image}
                                             alt={activeProduct.name}
                                             className="w-full h-full object-cover"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                                        <div className="absolute bottom-4 left-6 right-6 text-white flex items-end justify-between">
+                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+                                        <div className="absolute bottom-4 left-6 right-6 text-white flex items-end justify-between z-10">
                                             <div>
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <span className="text-[10px] font-bold bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 uppercase tracking-wider">{activeCategory.title}</span>
                                                 </div>
-                                                <h2 className="text-2xl font-bold leading-tight">{activeProduct.name}</h2>
+                                                <h2 className="text-2xl font-bold leading-tight shadow-black drop-shadow-md">{activeProduct.name}</h2>
                                             </div>
                                         </div>
                                     </div>
 
                                     {/* Content */}
-                                    <div className="p-6">
+                                    <div className="p-4 flex-1 flex flex-col">
                                         <div className="prose prose-sm text-slate-600 mb-6 max-w-none text-justify">
                                             <p>{activeProduct.description}</p>
                                         </div>
 
-                                        <div className="grid md:grid-cols-2 gap-3 mb-6">
-                                            {activeProduct.features.map((feature, idx) => (
-                                                <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100 flex items-center gap-3">
-                                                    <div className="w-5 h-5 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
-                                                        <Check className="w-2.5 h-2.5 text-green-500" />
+                                        <div className="mb-6">
+                                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Key Features</h4>
+                                            <div className="grid md:grid-cols-2 gap-2">
+                                                {activeProduct.features.map((feature, idx) => (
+                                                    <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100 flex items-center gap-3">
+                                                        <div className="w-5 h-5 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
+                                                            <Check className="w-2.5 h-2.5 text-green-500" />
+                                                        </div>
+                                                        <span className="text-slate-700 font-medium text-xs leading-tight">{feature}</span>
                                                     </div>
-                                                    <span className="text-slate-700 font-medium text-xs leading-tight">{feature}</span>
-                                                </div>
-                                            ))}
+                                                ))}
+                                            </div>
                                         </div>
 
-                                        {/* Bottom Action Area */}
-                                        <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-4 items-center justify-between">
-                                            <div className="flex items-center gap-3">
-                                                <div className="flex -space-x-2">
-                                                    {[1, 2, 3].map(i => (
-                                                        <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500">
-                                                            {i === 3 ? "2k+" : ""}
+                                        {activeProduct.details && (
+                                            <div className="mb-6">
+                                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Specifications</h4>
+                                                <div className="grid grid-cols-3 gap-2">
+                                                    {activeProduct.details.map((detail, idx) => (
+                                                        <div key={idx} className="bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-center">
+                                                            <span className="block text-[10px] text-slate-400 font-medium mb-0.5 uppercase tracking-wide">{detail.label}</span>
+                                                            <span className="block text-xs font-bold text-slate-800">{detail.value}</span>
                                                         </div>
                                                     ))}
                                                 </div>
-                                                <p className="text-xs text-slate-500">Trusted by <span className="font-bold text-slate-900">2,000+ businesses</span></p>
+                                            </div>
+                                        )}
+
+                                        {activeProduct.useCases && (
+                                            <div className="mb-6">
+                                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Common Use Cases</h4>
+                                                <div className="flex flex-wrap gap-2">
+                                                    {activeProduct.useCases.map((useCase, idx) => (
+                                                        <span key={idx} className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-medium border border-slate-200 flex items-center gap-1.5">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />
+                                                            {useCase}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
+                                            <div className="hidden sm:flex items-center gap-2">
+                                                <div className="flex -space-x-2">
+                                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" className="w-6 h-6 rounded-full border border-white object-cover" />
+                                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" className="w-6 h-6 rounded-full border border-white object-cover" />
+                                                    <div className="w-6 h-6 rounded-full border border-white bg-slate-900 flex items-center justify-center text-[8px] font-bold text-white relative z-10">
+                                                        2k+
+                                                    </div>
+                                                </div>
+                                                <p className="text-[10px] text-slate-500 font-medium">Trusted by businesses</p>
                                             </div>
 
                                             <Link
                                                 to="/contact"
-                                                className="w-full sm:w-auto px-6 py-3 rounded-xl bg-primary-600 text-white font-bold text-sm shadow-lg shadow-primary-500/30 hover:bg-primary-700 hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+                                                className="ml-auto px-6 py-2.5 rounded-full bg-slate-900 text-white font-bold text-sm shadow-lg shadow-slate-900/20 hover:bg-primary-600 hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2"
                                             >
                                                 Get a Quote <ArrowRight className="w-4 h-4" />
                                             </Link>
@@ -492,7 +659,8 @@ export default function Services() {
             </div>
 
             {/* CTA Bottom */}
-            < section className="py-20 bg-slate-900 text-white text-center mt-20" >
+            {/* CTA Bottom */}
+            <section className="py-20 bg-slate-900 text-white text-center mt-20 relative z-10">
                 <div className="container mx-auto px-6">
                     <h2 className="text-3xl md:text-4xl font-bold mb-6">Looking for something custom?</h2>
                     <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
@@ -502,7 +670,7 @@ export default function Services() {
                         Speak to a Consultant
                     </Link>
                 </div>
-            </section >
-        </div >
+            </section>
+        </div>
     );
 }

@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
@@ -8,6 +7,40 @@ import contactHero from '../assets/images/contact-hero.png?format=webp&w=1920&qu
 
 export default function Contact() {
     const location = useLocation();
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        subject: 'Commercial Printing Quote',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submissionStatus, setSubmissionStatus] = useState('idle');
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        // Simulate API call
+        setTimeout(() => {
+            setIsSubmitting(false);
+            setSubmissionStatus('success');
+            setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                subject: 'Commercial Printing Quote',
+                message: ''
+            });
+        }, 1500);
+    };
 
     // Scroll logic removed as per user request
 
@@ -53,38 +86,93 @@ export default function Contact() {
                         className="bg-white p-6 md:p-8 rounded-3xl shadow-xl shadow-slate-200"
                     >
                         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">Send us a Message</h2>
-                        <form className="space-y-4">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-1">First Name</label>
-                                    <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John" />
+                        {submissionStatus === 'success' ? (
+                            <div className="bg-green-50 border border-green-200 text-green-700 p-6 rounded-2xl text-center">
+                                <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
+                                <p className="mb-6">Thank you for reaching out. We'll get back to you shortly.</p>
+                                <button
+                                    onClick={() => setSubmissionStatus('idle')}
+                                    className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition"
+                                >
+                                    Send Another
+                                </button>
+                            </div>
+                        ) : (
+                            <form className="space-y-4" onSubmit={handleSubmit}>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-1">First Name</label>
+                                        <input
+                                            type="text"
+                                            name="firstName"
+                                            value={formData.firstName}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                                            placeholder="John"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-semibold text-slate-700 mb-1">Last Name</label>
+                                        <input
+                                            type="text"
+                                            name="lastName"
+                                            value={formData.lastName}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                                            placeholder="Doe"
+                                        />
+                                    </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Last Name</label>
-                                    <input type="text" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Doe" />
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                                        placeholder="john@example.com"
+                                    />
                                 </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-1">Email Address</label>
-                                <input type="email" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com" />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-1">Subject</label>
-                                <select className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
-                                    <option>Commercial Printing Quote</option>
-                                    <option>Packaging Inquiry</option>
-                                    <option>Corporate Gifting</option>
-                                    <option>General Support</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-semibold text-slate-700 mb-1">Message</label>
-                                <textarea rows="3" className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Tell us about your project..."></textarea>
-                            </div>
-                            <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2">
-                                Send Message <Send className="w-5 h-5" />
-                            </button>
-                        </form>
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Subject</label>
+                                    <select
+                                        name="subject"
+                                        value={formData.subject}
+                                        onChange={handleChange}
+                                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                                    >
+                                        <option>Commercial Printing Quote</option>
+                                        <option>Packaging Inquiry</option>
+                                        <option>Corporate Gifting</option>
+                                        <option>General Support</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-semibold text-slate-700 mb-1">Message</label>
+                                    <textarea
+                                        rows="3"
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-4 py-2.5 rounded-lg border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"
+                                        placeholder="Tell us about your project..."
+                                    ></textarea>
+                                </div>
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className={`w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 ${isSubmitting ? 'opacity-75 cursor-not-allowed' : ''}`}
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                    {!isSubmitting && <Send className="w-5 h-5" />}
+                                </button>
+                            </form>
+                        )}
                     </motion.div>
 
                     {/* Contact Info */}
