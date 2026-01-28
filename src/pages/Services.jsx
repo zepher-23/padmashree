@@ -2,12 +2,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useSearchParams } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import {
     Printer, Package, Gift, ArrowRight,
     BookOpen, FileText, CreditCard, Scroll, Sticker,
     Box, ShoppingBag, Layers,
     Coffee, Shirt, PenTool, Smartphone,
-    ChevronRight, ChevronLeft, ChevronDown, Check
+    ChevronRight, ChevronLeft, ChevronDown, Check, CheckCircle2,
+    UploadCloud, File, Trash2, X
 } from 'lucide-react';
 
 import commercialImg from '../assets/images/commercial_v2.png?format=webp&w=800&quality=75';
@@ -49,7 +51,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "2-3 Days" },
                     { label: "Print Method", value: "Digital / Offset" }
                 ],
-                useCases: ["Networking Events", "Client Meetings", "Brand Identity", "Appointment Cards"]
+                useCases: ["Networking Events", "Client Meetings", "Brand Identity", "Appointment Cards"],
+                pricing: { basePrice: 3.5, minQty: 100, unit: 'Cards' }
             },
             {
                 id: 'brochures',
@@ -63,7 +66,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "3-5 Days" },
                     { label: "Paper", value: "130gsm - 170gsm" }
                 ],
-                useCases: ["Product Launches", "Service Menus", "Event Guides", "Direct Mail Marketing"]
+                useCases: ["Product Launches", "Service Menus", "Event Guides", "Direct Mail Marketing"],
+                pricing: { basePrice: 25, minQty: 50, unit: 'Units' }
             },
             {
                 id: 'letterheads',
@@ -77,7 +81,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "3-5 Days" },
                     { label: "Paper", value: "100gsm Bond" }
                 ],
-                useCases: ["Official Correspondence", "Invoices & Receipts", "Contracts", "Proposals", "Internal Memos"]
+                useCases: ["Official Correspondence", "Invoices & Receipts", "Contracts", "Proposals", "Internal Memos"],
+                pricing: { basePrice: 5, minQty: 500, unit: 'Sheets' }
             },
             {
                 id: 'magazines',
@@ -91,7 +96,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "5-7 Days" },
                     { label: "Binding", value: "Perfect / Saddle" }
                 ],
-                useCases: ["Annual Reports", "Product Catalogs", "Company Profiles", "Event Programs"]
+                useCases: ["Annual Reports", "Product Catalogs", "Company Profiles", "Event Programs"],
+                pricing: { basePrice: 150, minQty: 10, unit: 'Units' }
             },
             {
                 id: 'posters',
@@ -105,7 +111,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "1-2 Days" },
                     { label: "Format", value: "Large Format" }
                 ],
-                useCases: ["Event Promotions", "Storefront Displays", "Trade Show Booths", "Office Decor"]
+                useCases: ["Event Promotions", "Storefront Displays", "Trade Show Booths", "Office Decor"],
+                pricing: { basePrice: 200, minQty: 1, unit: 'Units' }
             },
             {
                 id: 'stickers',
@@ -119,7 +126,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "3-4 Days" },
                     { label: "Type", value: "Roll / Sheet" }
                 ],
-                useCases: ["Product Labeling", "Brand Promotion", "Packaging Seals", "Event Badges"]
+                useCases: ["Product Labeling", "Brand Promotion", "Packaging Seals", "Event Badges"],
+                pricing: { basePrice: 4, minQty: 100, unit: 'Units' }
             }
         ]
     },
@@ -141,7 +149,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "15-20 Days" },
                     { label: "Grade", value: "Premium" }
                 ],
-                useCases: ["Luxury Goods", "Electronics", "VIP Gift Sets", "Jewelry Packaging"]
+                useCases: ["Luxury Goods", "Electronics", "VIP Gift Sets", "Jewelry Packaging"],
+                pricing: { basePrice: 250, minQty: 500, unit: 'Boxes' }
             },
             {
                 id: 'cartons',
@@ -155,7 +164,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "7-10 Days" },
                     { label: "Material", value: "SBS / mono" }
                 ],
-                useCases: ["Cosmetics Packaging", "Retail Shelves", "Pharma Boxes", "Food Packaging"]
+                useCases: ["Cosmetics Packaging", "Retail Shelves", "Pharma Boxes", "Food Packaging"],
+                pricing: { basePrice: 15, minQty: 1000, unit: 'Boxes' }
             },
             {
                 id: 'paper-bags',
@@ -169,7 +179,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "7-10 Days" },
                     { label: "Handle", value: "Twist / Rope" }
                 ],
-                useCases: ["Retail Shopping", "Event Goodie Bags", "Corporate Gifting", "Takeout Food"]
+                useCases: ["Retail Shopping", "Event Goodie Bags", "Corporate Gifting", "Takeout Food"],
+                pricing: { basePrice: 25, minQty: 500, unit: 'Bags' }
             },
             {
                 id: 'mailer-boxes',
@@ -183,7 +194,8 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "7-12 Days" },
                     { label: "Usage", value: "Shipping" }
                 ],
-                useCases: ["E-commerce Shipments", "Subscription Boxes", "PR Kits", "Direct Mail"]
+                useCases: ["E-commerce Shipments", "Subscription Boxes", "PR Kits", "Direct Mail"],
+                pricing: { basePrice: 45, minQty: 200, unit: 'Boxes' }
             },
             {
                 id: 'tissue',
@@ -195,7 +207,8 @@ const CATEGORIES = [
                 details: [
                     { label: "Thickness", value: "17-20 gsm" }
                 ],
-                useCases: ["E-commerce Packaging", "Gift Wrapping", "Retail Bags", "Luxury Product Protection"]
+                useCases: ["E-commerce Packaging", "Gift Wrapping", "Retail Bags", "Luxury Product Protection"],
+                pricing: { basePrice: 2, minQty: 2000, unit: 'Sheets' }
             }
         ]
     },
@@ -215,7 +228,8 @@ const CATEGORIES = [
                 details: [
                     { label: "Technique", value: "Print / Embroidery" }
                 ],
-                useCases: ["Team Uniforms", "Event Merchandise", "Promotional Giveaways", "Company Swag"]
+                useCases: ["Team Uniforms", "Event Merchandise", "Promotional Giveaways", "Company Swag"],
+                pricing: { basePrice: 450, minQty: 25, unit: 'Units' }
             },
             {
                 id: 'drinkware',
@@ -227,7 +241,8 @@ const CATEGORIES = [
                 details: [
                     { label: "Material", value: "Steel / Ceramic" }
                 ],
-                useCases: ["Employee Onboarding", "Client Gifting", "Trade Shows", "Office Use"]
+                useCases: ["Employee Onboarding", "Client Gifting", "Trade Shows", "Office Use"],
+                pricing: { basePrice: 350, minQty: 50, unit: 'Units' }
             },
             {
                 id: 'notebooks',
@@ -239,7 +254,8 @@ const CATEGORIES = [
                 details: [
                     { label: "Cover", value: "Leather / Hard" }
                 ],
-                useCases: ["Conferences", "Executive Gifts", "Training Materials", "Client Meetings"]
+                useCases: ["Conferences", "Executive Gifts", "Training Materials", "Client Meetings"],
+                pricing: { basePrice: 250, minQty: 50, unit: 'Units' }
             },
             {
                 id: 'writing',
@@ -251,7 +267,8 @@ const CATEGORIES = [
                 details: [
                     { label: "Type", value: "Ballpoint / Roller" }
                 ],
-                useCases: ["Trade Shows", "Reception Desks", "Sales Calls", "Gift Sets"]
+                useCases: ["Trade Shows", "Reception Desks", "Sales Calls", "Gift Sets"],
+                pricing: { basePrice: 50, minQty: 100, unit: 'Units' }
             },
             {
                 id: 'tech',
@@ -265,11 +282,431 @@ const CATEGORIES = [
                     { label: "Turnaround", value: "7-10 Days" },
                     { label: "Category", value: "Electronics" }
                 ],
-                useCases: ["Corporate Gifts", "Tech Events", "Employee Welcome Kits"]
+                useCases: ["Corporate Gifts", "Tech Events", "Employee Welcome Kits"],
+                pricing: { basePrice: 850, minQty: 25, unit: 'Units' }
             }
         ]
     }
 ];
+
+function CostCalculator({ pricing, qty, onChange }) {
+    // Safety check for qty
+    const safeQty = qty !== undefined ? qty : (pricing ? pricing.minQty : 1);
+    const total = safeQty * pricing.basePrice;
+
+    return (
+        <div>
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Estimate Cost</h4>
+
+            <div className="flex items-center justify-between mb-3">
+                <div>
+                    <div className="flex items-baseline gap-1">
+                        <span className="text-xl font-bold text-slate-900">₹{total.toLocaleString()}</span>
+                        <span className="text-[10px] text-slate-500">approx.</span>
+                    </div>
+                    <p className="text-[9px] text-slate-400">Excludes tax & shipping</p>
+                </div>
+                <div className="text-right bg-white px-2.5 py-1 rounded-lg border border-slate-200">
+                    <span className="text-xs font-bold text-slate-700 block">{qty.toLocaleString()} {pricing.unit}</span>
+                    <span className="text-[9px] text-slate-400">₹{pricing.basePrice}/unit</span>
+                </div>
+            </div>
+
+            <input
+                type="range"
+                min={pricing.minQty}
+                max={pricing.minQty * 10}
+                step={pricing.minQty}
+                value={safeQty}
+                onChange={(e) => onChange && onChange(Number(e.target.value))}
+                className="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-primary-600"
+            />
+            <div className="flex justify-between text-[9px] text-slate-400 font-medium mt-1">
+                <span>{pricing.minQty}</span>
+                <span>{pricing.minQty * 10}+</span>
+            </div>
+        </div>
+    );
+}
+
+function FileUploader({ onFileChange }) {
+    const [file, setFile] = useState(null);
+    const [error, setError] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        if (!selectedFile) return;
+
+        // 1MB limit (1024 * 1024 bytes)
+        if (selectedFile.size > 1024 * 1024) {
+            setError("File size exceeds 1MB limit");
+            setFile(null);
+            onFileChange(null);
+            return;
+        }
+
+        setError(null);
+        setFile(selectedFile);
+        onFileChange(selectedFile);
+    };
+
+    const handleRemoveFile = (e) => {
+        e.stopPropagation();
+        setFile(null);
+        setError(null);
+        onFileChange(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
+    };
+
+    return (
+        <div className="h-full flex flex-col">
+            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Upload Design</h4>
+
+            <input
+                type="file"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                className="hidden"
+                accept=".pdf,.ai,.psd,.jpg,.png"
+            />
+
+            <div
+                onClick={() => fileInputRef.current?.click()}
+                className={`flex-1 border-2 border-dashed rounded-xl transition-all cursor-pointer flex flex-col items-center justify-center p-4 text-center group min-h-[120px] relative overflow-hidden
+                    ${error ? 'border-red-200 bg-red-50 hover:border-red-300' :
+                        file ? 'border-green-200 bg-green-50 hover:border-green-300' :
+                            'border-slate-200 hover:border-primary-400 hover:bg-primary-50'}`}
+            >
+                {/* Error State */}
+                {error && (
+                    <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300">
+                        <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mb-2">
+                            <span className="text-xl font-bold text-red-500">!</span>
+                        </div>
+                        <span className="text-xs font-bold text-red-600 mb-1">File too large</span>
+                        <span className="text-[10px] text-red-400">Max 1MB allowed</span>
+                        <button
+                            className="mt-2 text-[10px] font-bold text-slate-500 underline"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                fileInputRef.current?.click();
+                            }}
+                        >
+                            Try again
+                        </button>
+                    </div>
+                )}
+
+                {/* Success State */}
+                {!error && file && (
+                    <div className="flex flex-col items-center animate-in fade-in zoom-in duration-300 w-full">
+                        <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                            <File className="w-5 h-5 text-green-600" />
+                        </div>
+                        <span className="text-xs font-bold text-slate-700 truncate max-w-[90%] mb-1">{file.name}</span>
+                        <span className="text-[10px] text-slate-400">{(file.size / 1024).toFixed(1)} KB</span>
+
+                        <button
+                            onClick={handleRemoveFile}
+                            className="absolute top-2 right-2 p-1.5 bg-white rounded-full shadow-sm text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
+                        >
+                            <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                    </div>
+                )}
+
+                {/* Default State */}
+                {!error && !file && (
+                    <>
+                        <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
+                            <UploadCloud className="w-5 h-5 text-slate-400 group-hover:text-primary-600 transition-colors" />
+                        </div>
+                        <span className="text-xs font-bold text-slate-600 group-hover:text-primary-700">Click to browse</span>
+                        <span className="text-[10px] text-slate-400 mt-1">Supports PDF, AI, PSD</span>
+                    </>
+                )}
+            </div>
+        </div>
+    );
+}
+
+function OrderSubmissionModal({ isOpen, onClose, product, qty, file }) {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        description: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            // Build FormData for multipart submission (supports file upload)
+            const submitData = new FormData();
+            submitData.append('name', formData.name);
+            submitData.append('email', formData.email);
+            submitData.append('phone', formData.phone);
+            submitData.append('description', formData.description);
+            submitData.append('productName', product.name);
+            submitData.append('productId', product.id);
+            submitData.append('quantity', qty);
+            submitData.append('unitPrice', product.pricing?.basePrice || 0);
+            submitData.append('estimatedTotal', product.pricing ? qty * product.pricing.basePrice : 0);
+
+            if (file) {
+                submitData.append('file', file);
+            }
+
+            const response = await fetch('/.netlify/functions/order-request', {
+                method: 'POST',
+                body: submitData
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Submission failed');
+            }
+
+            console.log('[Order Request] ✅ Submission successful:', result);
+            alert(`Order request for ${product.name} submitted successfully! We will contact you at ${formData.email} or ${formData.phone} soon.`);
+
+            // Reset form and close modal
+            setFormData({ name: '', email: '', phone: '', description: '' });
+            onClose();
+        } catch (error) {
+            console.error('[Order Request] ❌ Error:', error);
+            alert('Failed to submit order request. Please try again.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return createPortal(
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
+            <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-in zoom-in-95 duration-200">
+                <div className="flex items-center justify-between p-4 border-b border-slate-100">
+                    <h3 className="font-bold text-lg text-slate-900">Confirm Your Interest</h3>
+                    <button onClick={onClose} disabled={isSubmitting} className="p-2 hover:bg-slate-100 rounded-full text-slate-500 transition-colors disabled:opacity-50">
+                        <X className="w-5 h-5" />
+                    </button>
+                </div>
+
+                <div className="p-6">
+                    <div className="flex items-start gap-4 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-100">
+                        <img src={product.image} alt={product.name} className="w-16 h-16 rounded-lg object-cover" />
+                        <div>
+                            <h4 className="font-bold text-sm text-slate-900">{product.name}</h4>
+                            <p className="text-xs text-slate-500 mt-1">Quantity: <span className="font-semibold text-slate-700">{qty.toLocaleString()}</span></p>
+                            {file && (
+                                <div className="flex items-center gap-1.5 mt-1 text-xs text-green-600 font-medium">
+                                    <File className="w-3 h-3" /> {file.name}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Full Name</label>
+                            <input
+                                type="text"
+                                required
+                                disabled={isSubmitting}
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all font-medium text-slate-900 disabled:opacity-50"
+                                placeholder="John Doe"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Email Address</label>
+                            <input
+                                type="email"
+                                required
+                                disabled={isSubmitting}
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all font-medium text-slate-900 disabled:opacity-50"
+                                placeholder="john@company.com"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Phone Number</label>
+                            <input
+                                type="tel"
+                                required
+                                disabled={isSubmitting}
+                                value={formData.phone}
+                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all font-medium text-slate-900 disabled:opacity-50"
+                                placeholder="+91 98765 43210"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1.5">Requirements / Description <span className="text-slate-400 font-normal">(Optional)</span></label>
+                            <textarea
+                                value={formData.description}
+                                disabled={isSubmitting}
+                                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                                rows={3}
+                                className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-all font-medium text-slate-900 resize-none disabled:opacity-50"
+                                placeholder="Describe your requirements, special instructions, or any specific details..."
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-sm shadow-xl shadow-slate-900/10 hover:bg-primary-600 hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 mt-4 disabled:opacity-75 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                        >
+                            {isSubmitting ? (
+                                <>
+                                    <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                    </svg>
+                                    Submitting...
+                                </>
+                            ) : (
+                                <>Submit Order Request <ArrowRight className="w-4 h-4" /></>
+                            )}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>,
+        document.body
+    );
+}
+
+function ProductDetailView({ product, category }) {
+    const [qty, setQty] = useState(product.pricing ? product.pricing.minQty : 1);
+    const [file, setFile] = useState(null);
+    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+
+    // Reset state when product changes
+    useEffect(() => {
+        if (product.pricing) {
+            setQty(product.pricing.minQty);
+        }
+        setFile(null);
+    }, [product]);
+
+    return (
+        <div className="p-6">
+            {/* Top Row: Image and Quick Info */}
+            <div className="flex flex-col lg:flex-row gap-6 mb-6">
+                {/* Product Image */}
+                <div className="relative lg:w-2/5 h-52 lg:h-64 rounded-xl overflow-hidden shrink-0">
+                    <img
+                        src={product.image}
+                        alt={product.name}
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent" />
+                    <div className="absolute bottom-3 left-3 text-white">
+                        <span className="text-[9px] font-bold bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full uppercase tracking-wider">{category.title}</span>
+                        <h2 className="text-lg font-bold mt-1.5 drop-shadow-lg">{product.name}</h2>
+                    </div>
+                </div>
+
+                {/* Description, Features, and Specs */}
+                <div className="flex-1">
+                    <p className="text-slate-600 text-sm leading-relaxed mb-4">{product.description}</p>
+
+                    {/* Features as inline list */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                        {product.features.slice(0, 6).map((feature, idx) => (
+                            <span key={idx} className="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-100 px-2.5 py-1 rounded-lg text-xs text-slate-700">
+                                <Check className="w-3 h-3 text-green-500" />
+                                {feature}
+                            </span>
+                        ))}
+                    </div>
+
+                    {/* Specifications */}
+                    {product.details && (
+                        <div>
+                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Specifications</h4>
+                            <div className="flex flex-wrap gap-2">
+                                {product.details.map((detail, idx) => (
+                                    <div key={idx} className="bg-slate-50 p-2.5 rounded-lg text-center border border-slate-100 min-w-[100px] flex-1 basis-[calc(25%-0.5rem)] max-w-[200px]">
+                                        <span className="block text-[10px] text-slate-400 font-medium uppercase truncate">{detail.label}</span>
+                                        <span className="block text-xs font-bold text-slate-800 truncate" title={detail.value}>{detail.value}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Calculator */}
+            {product.pricing && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                        <CostCalculator pricing={product.pricing} qty={qty} onChange={setQty} />
+                    </div>
+                    <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                        <FileUploader onFileChange={setFile} />
+                    </div>
+                </div>
+            )}
+
+            {/* Use Cases */}
+            {product.useCases && (
+                <div className="mb-6">
+                    <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Perfect For</h4>
+                    <div className="flex flex-wrap gap-1.5">
+                        {product.useCases.map((useCase, idx) => (
+                            <span key={idx} className="bg-primary-50 text-primary-700 px-3 py-1.5 rounded-full text-xs font-medium border border-primary-100">
+                                {useCase}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* CTA Bar */}
+            <div className="flex items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                <div className="hidden sm:flex items-center gap-3">
+                    <div className="flex -space-x-2">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" className="w-7 h-7 rounded-full border-2 border-white object-cover" />
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" className="w-7 h-7 rounded-full border-2 border-white object-cover" />
+                        <div className="w-7 h-7 rounded-full border-2 border-white bg-slate-900 flex items-center justify-center text-[9px] font-bold text-white">2k+</div>
+                    </div>
+                    <span className="text-xs text-slate-500">Trusted by businesses</span>
+                </div>
+                <button
+                    onClick={() => setIsOrderModalOpen(true)}
+                    className="flex-1 sm:flex-none px-8 py-3 rounded-xl bg-slate-900 text-white font-bold text-sm shadow-lg hover:bg-primary-600 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                >
+                    Submit Order <ArrowRight className="w-4 h-4" />
+                </button>
+            </div>
+            <div className="text-center pb-4 sm:hidden">
+                <span className="text-[10px] text-slate-400 italic">A team member will contact you soon to confirm details</span>
+            </div>
+
+            <OrderSubmissionModal
+                isOpen={isOrderModalOpen}
+                onClose={() => setIsOrderModalOpen(false)}
+                product={product}
+                qty={qty}
+                file={file}
+            />
+        </div>
+    );
+}
 
 export default function Services() {
     const [searchParams] = useSearchParams();
@@ -471,12 +908,12 @@ export default function Services() {
                     </div>
                 </div>
 
-                {/* Two Column Layout (Dynamic Height) */}
-                <div className="grid lg:grid-cols-12 gap-6 h-auto">
+                {/* Three Column Layout */}
+                <div className="grid lg:grid-cols-12 gap-8 h-auto">
 
                     {/* Sidebar - Product List (Desktop Only) */}
-                    <div className="hidden lg:flex lg:col-span-3 flex-col sticky top-24 self-start space-y-3 h-[calc(100vh-120px)]">
-                        <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex-1 flex flex-col overflow-hidden">
+                    <div className="hidden lg:flex lg:col-span-3 flex-col sticky top-24 self-start space-y-4 h-[calc(100vh-120px)]">
+                        <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex-1 flex flex-col overflow-hidden">
                             <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4 px-2 shrink-0">
                                 {activeCategory.title}
                             </h3>
@@ -509,7 +946,7 @@ export default function Services() {
                         </div>
                     </div>
 
-                    {/* Detail View - Right Side */}
+                    {/* Detail View - Main Content */}
                     <div className="lg:col-span-9" ref={detailViewRef}>
 
                         {/* Mobile Product Selector (Dropdown) */}
@@ -561,100 +998,15 @@ export default function Services() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.98 }}
                                 transition={{ duration: 0.2 }}
-                                className="bg-white rounded-[2rem] shadow-2xl shadow-slate-100 border border-slate-100 h-auto flex flex-col relative overflow-hidden"
+                                className="bg-white rounded-2xl shadow-xl shadow-slate-100 border border-slate-100 overflow-hidden"
                             >
-                                {/* Scrollable Area */}
-                                <div className="w-full">
-                                    {/* Product Hero Image */}
-                                    <div className="relative h-64 w-full group">
-                                        <img
-                                            src={activeProduct.image}
-                                            alt={activeProduct.name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
-                                        <div className="absolute bottom-4 left-6 right-6 text-white flex items-end justify-between z-10">
-                                            <div>
-                                                <div className="flex items-center gap-2 mb-1">
-                                                    <span className="text-[10px] font-bold bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10 uppercase tracking-wider">{activeCategory.title}</span>
-                                                </div>
-                                                <h2 className="text-2xl font-bold leading-tight shadow-black drop-shadow-md">{activeProduct.name}</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-4 flex-1 flex flex-col">
-                                        <div className="prose prose-sm text-slate-600 mb-6 max-w-none text-justify">
-                                            <p>{activeProduct.description}</p>
-                                        </div>
-
-                                        <div className="mb-6">
-                                            <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Key Features</h4>
-                                            <div className="grid md:grid-cols-2 gap-2">
-                                                {activeProduct.features.map((feature, idx) => (
-                                                    <div key={idx} className="bg-slate-50 p-3 rounded-lg border border-slate-100 flex items-center gap-3">
-                                                        <div className="w-5 h-5 rounded-full bg-white border border-slate-200 flex items-center justify-center shrink-0">
-                                                            <Check className="w-2.5 h-2.5 text-green-500" />
-                                                        </div>
-                                                        <span className="text-slate-700 font-medium text-xs leading-tight">{feature}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {activeProduct.details && (
-                                            <div className="mb-6">
-                                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Specifications</h4>
-                                                <div className="grid grid-cols-3 gap-2">
-                                                    {activeProduct.details.map((detail, idx) => (
-                                                        <div key={idx} className="bg-slate-50 p-2.5 rounded-lg border border-slate-100 text-center">
-                                                            <span className="block text-[10px] text-slate-400 font-medium mb-0.5 uppercase tracking-wide">{detail.label}</span>
-                                                            <span className="block text-xs font-bold text-slate-800">{detail.value}</span>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {activeProduct.useCases && (
-                                            <div className="mb-6">
-                                                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Common Use Cases</h4>
-                                                <div className="flex flex-wrap gap-2">
-                                                    {activeProduct.useCases.map((useCase, idx) => (
-                                                        <span key={idx} className="bg-slate-100 text-slate-600 px-3 py-1.5 rounded-lg text-xs font-medium border border-slate-200 flex items-center gap-1.5">
-                                                            <span className="w-1.5 h-1.5 rounded-full bg-primary-500 shrink-0" />
-                                                            {useCase}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between gap-4">
-                                            <div className="hidden sm:flex items-center gap-2">
-                                                <div className="flex -space-x-2">
-                                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="User" className="w-6 h-6 rounded-full border border-white object-cover" />
-                                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="User" className="w-6 h-6 rounded-full border border-white object-cover" />
-                                                    <div className="w-6 h-6 rounded-full border border-white bg-slate-900 flex items-center justify-center text-[8px] font-bold text-white relative z-10">
-                                                        2k+
-                                                    </div>
-                                                </div>
-                                                <p className="text-[10px] text-slate-500 font-medium">Trusted by businesses</p>
-                                            </div>
-
-                                            <Link
-                                                to="/contact"
-                                                className="ml-auto px-6 py-2.5 rounded-full bg-slate-900 text-white font-bold text-sm shadow-lg shadow-slate-900/20 hover:bg-primary-600 hover:shadow-primary-600/30 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2"
-                                            >
-                                                Get a Quote <ArrowRight className="w-4 h-4" />
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </div>
+                                {/* Card Layout: Image Top, Content Grid Below */}
+                                {/* Use specialized Product Detail View component that manages state */}
+                                <ProductDetailView product={activeProduct} category={activeCategory} />
                             </motion.div>
                         </AnimatePresence>
                     </div>
+
                 </div>
             </div>
 
@@ -671,6 +1023,6 @@ export default function Services() {
                     </Link>
                 </div>
             </section>
-        </div>
+        </div >
     );
 }

@@ -24,13 +24,25 @@ export default function Contact() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmissionStatus('idle');
 
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitting(false);
+        try {
+            const response = await fetch('/.netlify/functions/contact-form', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Submission failed');
+            }
+
+            console.log('[Contact Form] ✅ Submission successful:', result);
             setSubmissionStatus('success');
             setFormData({
                 firstName: '',
@@ -39,7 +51,12 @@ export default function Contact() {
                 subject: 'Commercial Printing Quote',
                 message: ''
             });
-        }, 1500);
+        } catch (error) {
+            console.error('[Contact Form] ❌ Error:', error);
+            setSubmissionStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     // Scroll logic removed as per user request
